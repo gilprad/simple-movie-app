@@ -5,8 +5,8 @@ import 'package:simple_movie_app/screens/explore_screen.dart';
 import 'package:simple_movie_app/screens/favorited_screen.dart';
 import 'package:simple_movie_app/screens/watchlist_screen.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget with ChangeNotifier{
+   HomeScreen({Key? key}) : super(key: key);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -18,7 +18,10 @@ class _HomeScreenState extends State<HomeScreen> {
     FavoritedScreen(),
     WatchListScreen()
   ];
+
   String appBarTitle = 'Simple Movie App';
+  
+  
   @override
   Widget build(BuildContext context) {
     return SafeArea(

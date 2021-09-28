@@ -14,8 +14,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: Container(
-        color: Colors.deepPurple,
+      child: Material(
+        color: Colors.transparent,
         child: Column(
           children: [
             SizedBox(
@@ -46,12 +46,22 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 },
               ),
             ),
-            const Divider(),
+            Divider(
+              color: Colors.white.withOpacity(0.8),
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: ListTile(
-                leading: FaIcon(FontAwesomeIcons.signOutAlt),
-                title: Text('Logout'),
+                leading: FaIcon(
+                  FontAwesomeIcons.signOutAlt,
+                  color: Colors.red,
+                ),
+                title: Text(
+                  'Logout',
+                  style: TextStyle(
+                    color: Colors.red,
+                  ),
+                ),
                 onTap: () {},
               ),
             )
