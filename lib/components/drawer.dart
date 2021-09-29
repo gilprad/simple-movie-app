@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:simple_movie_app/helper/responsive.dart';
+import 'package:simple_movie_app/helper/text.dart';
 import 'package:simple_movie_app/screens/profile_screen.dart';
 
 class CustomDrawer extends StatefulWidget {
@@ -15,7 +16,9 @@ class _CustomDrawerState extends State<CustomDrawer> {
   Widget build(BuildContext context) {
     return Drawer(
       child: Material(
-        color: Colors.transparent,
+        color: Color(
+          0xff070d2d,
+        ),
         child: Column(
           children: [
             SizedBox(
@@ -27,19 +30,31 @@ class _CustomDrawerState extends State<CustomDrawer> {
             SizedBox(
               height: displayHeight(context) * 0.03,
             ),
-            Text('Username'),
+            CustomText(
+              content: 'Username',
+              size: 20,
+            ),
             SizedBox(
               height: displayHeight(context) * 0.02,
             ),
-            Text('Email'),
+            CustomText(
+              content: 'Email',
+              size: 18,
+            ),
             SizedBox(
               height: displayHeight(context) * 0.04,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: ListTile(
-                leading: FaIcon(FontAwesomeIcons.user),
-                title: Text('Profile'),
+                leading: FaIcon(
+                  FontAwesomeIcons.user,
+                  color: Colors.white,
+                ),
+                title: CustomText(
+                  content: 'Profile',
+                  size: 18,
+                ),
                 onTap: () {
                   Navigator.of(context).push(
                       MaterialPageRoute(builder: (context) => ProfileScreen()));
@@ -47,7 +62,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
               ),
             ),
             Divider(
-              color: Colors.white.withOpacity(0.8),
+              color: Colors.white.withOpacity(0.9),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -56,11 +71,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   FontAwesomeIcons.signOutAlt,
                   color: Colors.red,
                 ),
-                title: Text(
-                  'Logout',
-                  style: TextStyle(
-                    color: Colors.red,
-                  ),
+                title: CustomText(
+                  content: 'Logout',
+                  color: Colors.red,
+                  size: 18,
                 ),
                 onTap: () {},
               ),

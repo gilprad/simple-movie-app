@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:simple_movie_app/repository/favorited_repository.dart';
+import 'package:simple_movie_app/helper/theme.dart';
 import 'package:simple_movie_app/repository/tab_repository.dart';
-import 'package:simple_movie_app/screens/detail_page_screen.dart';
-
-import 'screens/home_screen.dart';
+import 'package:simple_movie_app/screens/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,8 +24,9 @@ class MyApp extends StatelessWidget {
         // )
       ],
       child: MaterialApp(
+        // theme: MovieTheme.theme(),
         debugShowCheckedModeBanner: false,
-        home: HomeScreen(),
+        home: SplashScreen(),
       ),
     );
   }
