@@ -38,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> with ChangeNotifier {
             0xff070d2d,
           ),
           bottomNavigationBar: BottomNavigationBar(
-            unselectedItemColor: Colors.white,
+            unselectedItemColor: Colors.grey,
             backgroundColor: Color(
               0xff070d2d,
             ),

@@ -31,7 +31,9 @@ class _ExploreScreenState extends State<ExploreScreen> {
 
   Widget buildTrendingMovies() {
     return Container(
-      padding: EdgeInsets.all(15),
+      padding: EdgeInsets.all(
+        15,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -41,7 +43,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
             size: 24,
           ),
           SizedBox(
-            height: 10,
+            height: 25,
           ),
           Container(
             height: displayHeight(context) * 0.4,
@@ -71,7 +73,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
             size: 24,
           ),
           SizedBox(
-            height: 10,
+            height: 25,
           ),
           Container(
             height: displayHeight(context) * 0.4,
@@ -80,7 +82,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) => MovieCard(),
                 separatorBuilder: (context, index) => SizedBox(
-                      width: 8,
+                      width: 60,
                     ),
                 itemCount: 5),
           )
@@ -101,7 +103,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
             size: 24,
           ),
           SizedBox(
-            height: 10,
+            height: 25,
           ),
           Container(
             height: displayHeight(context) * 0.4,
@@ -110,7 +112,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) => MovieCard(),
                 separatorBuilder: (context, index) => SizedBox(
-                      width: 8,
+                      width: 60,
                     ),
                 itemCount: 5),
           )

@@ -2,6 +2,7 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:simple_movie_app/helper/responsive.dart';
+import 'package:simple_movie_app/helper/text.dart';
 
 class DetailPageScreen extends StatefulWidget {
   const DetailPageScreen({Key? key}) : super(key: key);
@@ -15,30 +16,45 @@ class _DetailPageScreenState extends State<DetailPageScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+      backgroundColor: Color(
+        0xff070d2d,
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: SizedBox(
         width: displayWidth(context) * 0.4,
-        height: displayHeight(context) * 0.067,
+        height: displayHeight(context) * 0.07,
         child: FloatingActionButton(
-          child: const Text(
-            'Add to Favorite',
-            textAlign: TextAlign.center,
+          child: CustomText(
+            content: 'Add to Favorite',
+            weight: FontWeight.w600,
+            size: 16,
           ),
           onPressed: () {},
+          backgroundColor: Color(
+            0xff5770e5,
+          ),
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
         ),
       ),
       appBar: AppBar(
-        title: Text('Detail Movie'),
+        backgroundColor: Color(
+          0xff070d2d,
+        ),
+        title: CustomText(
+          content: 'Detail Movie',
+          size: 24,
+          weight: FontWeight.bold,
+        ),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Container(
+          padding: EdgeInsets.symmetric(
+            horizontal: 20,
+          ),
           height: displayHeight(context),
           width: displayWidth(context),
-          color: Colors.lightBlue,
-          padding: EdgeInsets.symmetric(horizontal: 30),
           child: Column(
             children: [
               SizedBox(
@@ -50,14 +66,24 @@ class _DetailPageScreenState extends State<DetailPageScreen> {
                 decoration: BoxDecoration(
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.white.withOpacity(0.3),
-                        offset: Offset(0, 5),
-                        blurRadius: 5,
-                        spreadRadius: 2,
+                        color: Colors.white.withOpacity(
+                          0.2,
+                        ),
+                        offset: Offset(
+                          0,
+                          10,
+                        ),
+                        blurRadius: 2,
+                        spreadRadius: 1,
                       ),
                       BoxShadow(
-                        color: Colors.white.withOpacity(0.1),
-                        offset: Offset(0, 9),
+                        color: Colors.white.withOpacity(
+                          0.1,
+                        ),
+                        offset: Offset(
+                          0,
+                          15,
+                        ),
                         blurRadius: 3,
                         spreadRadius: 5,
                       ),
@@ -74,80 +100,88 @@ class _DetailPageScreenState extends State<DetailPageScreen> {
               ),
               Align(
                 alignment: Alignment.centerLeft,
-                child: Text(
-                  'Title',
-                  style: TextStyle(fontSize: 28),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
+                child: CustomText(
+                  content: 'Title',
+                  size: 24,
+                  weight: FontWeight.w600,
                 ),
               ),
               SizedBox(
                 height: 10,
               ),
               Chip(
-                label: Text(
-                  'Action',
+                label: CustomText(
+                  content: 'Action',
                 ),
-                backgroundColor: Colors.lightBlueAccent,
-                shadowColor: Colors.black.withOpacity(0.7),
-                elevation: 5,
+                backgroundColor: Color(
+                  0xff161a36,
+                ),
               ),
               SizedBox(
                 height: 10,
               ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Row(
-                  children: [
-                    Text(
-                      'Status: ',
-                    ),
-                    Spacer(),
-                    Text(
-                      'Released',
-                    ),
-                  ],
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CustomText(
+                    content: 'Status:',
+                    size: 18,
+                    weight: FontWeight.w600,
+                  ),
+                  CustomText(
+                    content: 'Released',
+                    size: 18,
+                    weight: FontWeight.w600,
+                  ),
+                ],
               ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Row(
-                  children: [
-                    Text(
-                      'Release Date: ',
-                    ),
-                    Spacer(),
-                    Text(
-                      '20 June 2021',
-                    )
-                  ],
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CustomText(
+                    size: 18,
+                    weight: FontWeight.w600,
+                    content: 'Release Date: ',
+                  ),
+                  CustomText(
+                    size: 18,
+                    weight: FontWeight.w600,
+                    content: '20 June 2021',
+                  )
+                ],
               ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Row(
-                  children: [
-                    Text(
-                      'Rating: ',
-                    ),
-                    Spacer(),
-                    Text('7.9/10')
-                  ],
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CustomText(
+                    size: 18,
+                    weight: FontWeight.w600,
+                    content: 'Rating: ',
+                  ),
+                  CustomText(
+                    content: '7.9/10',
+                    size: 18,
+                    weight: FontWeight.w600,
+                  )
+                ],
               ),
               SizedBox(
                 height: 15,
               ),
-              Text(
-                'Overview',
+              CustomText(
+                content: 'Overview',
+                size: 18,
+                weight: FontWeight.w600,
               ),
               SizedBox(
                 height: 20,
               ),
-              Text(
-                'a',
-                textAlign: TextAlign.left,
-                maxLines: 10,
+              CustomText(
+                weight: FontWeight.w600,
+                size: 18,
+                content: 'a',
+                align: TextAlign.left,
+                maxlines: 10,
               )
             ],
           ),
