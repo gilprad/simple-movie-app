@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:simple_movie_app/helper/text.dart';
 import 'package:simple_movie_app/screens/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -25,6 +27,9 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Color(
+          0xff070d2d,
+        ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -33,8 +38,10 @@ class _SplashScreenState extends State<SplashScreen> {
                 'assets/video-camera.svg',
                 height: 200,
               ),
-              Text(
-                'Simple Movie App',
+              CustomText(
+                content: 'Simple Movie App',
+                size: 28,
+                weight: FontWeight.w600,
               )
             ],
           ),

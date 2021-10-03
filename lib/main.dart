@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         // )
       ],
       child: MaterialApp(
-        // theme: MovieTheme.theme(),
+        theme: MovieTheme.theme(),
         debugShowCheckedModeBanner: false,
         home: SplashScreen(),
       ),

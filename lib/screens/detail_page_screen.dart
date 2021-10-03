@@ -1,21 +1,29 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
+
 import 'package:simple_movie_app/helper/responsive.dart';
 import 'package:simple_movie_app/helper/text.dart';
+import 'package:simple_movie_app/models/movie.dart';
 
 class DetailPageScreen extends StatefulWidget {
-  const DetailPageScreen({Key? key}) : super(key: key);
+  Movie movie;
+  DetailPageScreen({
+    Key? key,
+    required this.movie,
+  }) : super(key: key);
 
   @override
   _DetailPageScreenState createState() => _DetailPageScreenState();
 }
 
 class _DetailPageScreenState extends State<DetailPageScreen> {
+  String pathImageUrl = 'https://image.tmdb.org/t/p/w500';
+  bool isFavorited = false;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Color(
         0xff070d2d,
       ),
@@ -25,14 +33,19 @@ class _DetailPageScreenState extends State<DetailPageScreen> {
         height: displayHeight(context) * 0.07,
         child: FloatingActionButton(
           child: CustomText(
-            content: 'Add to Favorite',
+            content: isFavorited ? 'Remove from Favorite' : 'Add to Favorite',
             weight: FontWeight.w600,
             size: 16,
+            align: TextAlign.center,
           ),
-          onPressed: () {},
-          backgroundColor: Color(
-            0xff5770e5,
-          ),
+          onPressed: () {
+            showAlertDialog(context);
+          },
+          backgroundColor: isFavorited
+              ? Colors.red
+              : Color(
+                  0xff5770e5,
+                ),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
         ),
@@ -67,31 +80,21 @@ class _DetailPageScreenState extends State<DetailPageScreen> {
                     boxShadow: [
                       BoxShadow(
                         color: Colors.white.withOpacity(
-                          0.2,
+                          0.1,
                         ),
                         offset: Offset(
                           0,
                           10,
                         ),
-                        blurRadius: 2,
+                        blurRadius: 1,
                         spreadRadius: 1,
-                      ),
-                      BoxShadow(
-                        color: Colors.white.withOpacity(
-                          0.1,
-                        ),
-                        offset: Offset(
-                          0,
-                          15,
-                        ),
-                        blurRadius: 3,
-                        spreadRadius: 5,
                       ),
                     ],
                     borderRadius: BorderRadius.circular(50),
                     image: DecorationImage(
                       image: NetworkImage(
-                          'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/ziEuG1essDuWuC5lpWUaw1uXY2O.jpg'),
+                        pathImageUrl + widget.movie.posterPath!,
+                      ),
                       fit: BoxFit.cover,
                     )),
               ),
@@ -101,7 +104,7 @@ class _DetailPageScreenState extends State<DetailPageScreen> {
               Align(
                 alignment: Alignment.centerLeft,
                 child: CustomText(
-                  content: 'Title',
+                  content: widget.movie.title,
                   size: 24,
                   weight: FontWeight.w600,
                 ),
@@ -129,7 +132,9 @@ class _DetailPageScreenState extends State<DetailPageScreen> {
                     weight: FontWeight.w600,
                   ),
                   CustomText(
-                    content: 'Released',
+                    content: widget.movie.releaseDate != null
+                        ? 'Released'
+                        : 'Not yet',
                     size: 18,
                     weight: FontWeight.w600,
                   ),
@@ -146,7 +151,7 @@ class _DetailPageScreenState extends State<DetailPageScreen> {
                   CustomText(
                     size: 18,
                     weight: FontWeight.w600,
-                    content: '20 June 2021',
+                    content: widget.movie.releaseDate.toString(),
                   )
                 ],
               ),
@@ -159,7 +164,7 @@ class _DetailPageScreenState extends State<DetailPageScreen> {
                     content: 'Rating: ',
                   ),
                   CustomText(
-                    content: '7.9/10',
+                    content: widget.movie.voteAverage.toString() + '/10',
                     size: 18,
                     weight: FontWeight.w600,
                   )
@@ -176,17 +181,65 @@ class _DetailPageScreenState extends State<DetailPageScreen> {
               SizedBox(
                 height: 20,
               ),
-              CustomText(
-                weight: FontWeight.w600,
-                size: 18,
-                content: 'a',
-                align: TextAlign.left,
-                maxlines: 10,
+              Expanded(
+                child: CustomText(
+                  weight: FontWeight.w600,
+                  size: 18,
+                  content: widget.movie.overview ?? '-',
+                  align: TextAlign.left,
+                  maxlines: 10,
+                ),
+              ),
+              SizedBox(
+                height: 30,
               )
             ],
           ),
         ),
       ),
     ));
+  }
+
+  showAlertDialog(BuildContext context) {
+    Widget yesButton = TextButton(
+        onPressed: () {
+          setState(() {
+            isFavorited = !isFavorited;
+          });
+          Navigator.pop(context);
+        },
+        child: Text(
+          'Yes',
+        ));
+    Widget noButton = TextButton(
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        child: Text(
+          'No',
+        ));
+
+    AlertDialog alert = AlertDialog(
+      title: Text(
+        'Alert',
+      ),
+      content: isFavorited
+          ? Text(
+              'You will remove this film from favorited, continue?',
+              maxLines: 2,
+            )
+          : Text(
+              'You will favorite this film, continue?',
+            ),
+      actions: [
+        noButton,
+        yesButton,
+      ],
+    );
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        });
   }
 }
