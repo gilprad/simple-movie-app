@@ -1,15 +1,13 @@
-import 'package:flutter/rendering.dart';
 import 'package:simple_movie_app/api/dio.dart';
 import 'package:simple_movie_app/models/movie.dart';
-import 'dart:convert';
 
 class MovieService {
   AppHttpClient client = AppHttp.client;
 
-  Future<Movie> getDetail(int movieId) async {
+  Future<Movie> getDetailMovie(int movieId) async {
     final response = await client.get('movie/$movieId');
 
-    return Movie.fromJson(response.data);
+    return Movie.fromMap(response.data);
   }
 
   Future<List<Movie>> getTopRated() async {

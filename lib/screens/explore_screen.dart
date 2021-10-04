@@ -70,18 +70,18 @@ class _ExploreScreenState extends State<ExploreScreen> {
 
           if (snapshot.hasData) {
             return Container(
-              padding: EdgeInsets.all(
+              padding: const EdgeInsets.all(
                 15,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CustomText(
+                  const CustomText(
                     content: 'Top Rated Movie',
                     weight: FontWeight.w600,
                     size: 24,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 25,
                   ),
                   Container(
@@ -92,7 +92,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         itemBuilder: (context, index) => MovieCard(
                               movie: snapshot.data![index],
                             ),
-                        separatorBuilder: (context, index) => SizedBox(
+                        separatorBuilder: (context, index) => const SizedBox(
                               width: 20,
                             ),
                         itemCount: snapshot.data!.length),
@@ -119,18 +119,18 @@ class _ExploreScreenState extends State<ExploreScreen> {
 
           if (snapshot.hasData) {
             return Container(
-              padding: EdgeInsets.all(
+              padding: const EdgeInsets.all(
                 15,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CustomText(
+                  const CustomText(
                     content: 'Popular Movie',
                     weight: FontWeight.w600,
                     size: 24,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 25,
                   ),
                   Container(
@@ -141,7 +141,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         itemBuilder: (context, index) => MovieCard(
                               movie: snapshot.data![index],
                             ),
-                        separatorBuilder: (context, index) => SizedBox(
+                        separatorBuilder: (context, index) => const SizedBox(
                               width: 20,
                             ),
                         itemCount: snapshot.data!.length),
@@ -168,18 +168,18 @@ class _ExploreScreenState extends State<ExploreScreen> {
 
           if (snapshot.hasData) {
             return Container(
-              padding: EdgeInsets.all(
+              padding: const EdgeInsets.all(
                 15,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CustomText(
+                  const CustomText(
                     content: 'Upcoming Movie',
                     weight: FontWeight.w600,
                     size: 24,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 25,
                   ),
                   Container(
@@ -190,7 +190,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         itemBuilder: (context, index) => MovieCard(
                               movie: snapshot.data![index],
                             ),
-                        separatorBuilder: (context, index) => SizedBox(
+                        separatorBuilder: (context, index) => const SizedBox(
                               width: 20,
                             ),
                         itemCount: snapshot.data!.length),

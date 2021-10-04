@@ -16,18 +16,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: CustomText(
+          title: const CustomText(
             content: 'Profile',
             weight: FontWeight.bold,
             size: 24,
           ),
           centerTitle: true,
-          backgroundColor: Color(
+          backgroundColor: const Color(
             0xff070d2d,
           ),
         ),
         body: Container(
-          color: Color(
+          color: const Color(
             0xff070d2d,
           ),
           padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -36,7 +36,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               SizedBox(
                 height: displayHeight(context) * 0.07,
               ),
-              Center(
+              const Center(
                 child: CircleAvatar(
                   radius: 60,
                 ),
@@ -44,7 +44,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               SizedBox(
                 height: displayHeight(context) * 0.05,
               ),
-              CustomText(
+              const CustomText(
                 content: 'Email',
                 size: 22,
                 weight: FontWeight.bold,
@@ -52,12 +52,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
               SizedBox(
                 height: displayHeight(context) * 0.05,
               ),
-              CustomText(
+              const CustomText(
                 content: 'Username',
                 size: 20,
                 weight: FontWeight.bold,
               ),
-              Spacer(),
+              const Spacer(),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     primary: Colors.red,
@@ -66,12 +66,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       0.8,
                     )),
                 onPressed: () {},
-                child: CustomText(
+                child: const CustomText(
                   content: 'Logout',
                   size: 18,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               )
             ],

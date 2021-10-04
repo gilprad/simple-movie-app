@@ -16,9 +16,12 @@ class MovieCard extends StatefulWidget {
 
 class _MovieCardState extends State<MovieCard> {
   void goToDetailPage() {
-    // Navigator.of(context).push(MaterialPageRoute(
-    //   builder: (context) => DetailPageScreen(movie: movie),
-    // ));
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => DetailPageScreen(
+        movie: widget.movie,
+        movieId: widget.movie.id!,
+      ),
+    ));
   }
 
   static String pathImageUrl = 'https://image.tmdb.org/t/p/w500';
@@ -27,7 +30,7 @@ class _MovieCardState extends State<MovieCard> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: goToDetailPage,
-      child: Container(
+      child: SizedBox(
         width: 180,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,7 +48,7 @@ class _MovieCardState extends State<MovieCard> {
                     30,
                   )),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Align(

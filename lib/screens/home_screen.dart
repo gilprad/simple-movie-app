@@ -1,15 +1,11 @@
-import 'dart:convert';
 import 'dart:ui';
 
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:simple_movie_app/api/dio_base.dart';
-import 'package:simple_movie_app/api/dio_exception.dart';
 import 'package:simple_movie_app/api/services/movie_service.dart';
 import 'package:simple_movie_app/components/drawer.dart';
 import 'package:simple_movie_app/helper/text.dart';
@@ -17,12 +13,11 @@ import 'package:simple_movie_app/models/movie.dart';
 import 'package:simple_movie_app/repository/tab_repository.dart';
 import 'package:simple_movie_app/screens/companies_screen.dart';
 import 'package:simple_movie_app/screens/detail_page_screen.dart';
-import 'package:simple_movie_app/screens/empty_favorite_screen.dart';
 import 'package:simple_movie_app/screens/explore_screen.dart';
 import 'package:simple_movie_app/screens/favorited_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -33,9 +28,9 @@ class _HomeScreenState extends State<HomeScreen> with ChangeNotifier {
   MovieService movieService = MovieService();
 
   static List<Widget> pages = [
-    ExploreScreen(),
-    FavoritedScreen(),
-    CompaniesScreen()
+    const ExploreScreen(),
+    const FavoritedScreen(),
+    const CompaniesScreen()
   ];
 
   String appBarTitle = 'Simple Movie App';
@@ -45,15 +40,15 @@ class _HomeScreenState extends State<HomeScreen> with ChangeNotifier {
     return Consumer<TabRepository>(builder: (context, tabRepository, child) {
       return SafeArea(
         child: Scaffold(
-          backgroundColor: Color(
+          backgroundColor: const Color(
             0xff070d2d,
           ),
           bottomNavigationBar: BottomNavigationBar(
             unselectedItemColor: Colors.grey,
-            backgroundColor: Color(
+            backgroundColor: const Color(
               0xff070d2d,
             ),
-            selectedItemColor: Color(
+            selectedItemColor: const Color(
               0xff5770e5,
             ),
             currentIndex: tabRepository.selectedTab,
@@ -75,9 +70,9 @@ class _HomeScreenState extends State<HomeScreen> with ChangeNotifier {
               )
             ],
           ),
-          drawer: CustomDrawer(),
+          drawer: const CustomDrawer(),
           appBar: AppBar(
-            backgroundColor: Color(
+            backgroundColor: const Color(
               0xff070d2d,
             ),
             title: CustomText(
@@ -154,7 +149,7 @@ class SearchScreen extends SearchDelegate<String> {
         onPressed: () {
           query = '';
         },
-        icon: FaIcon(
+        icon: const FaIcon(
           FontAwesomeIcons.times,
         ),
       )
@@ -183,7 +178,7 @@ class SearchScreen extends SearchDelegate<String> {
         if (snapshot.hasData) {
           if (snapshot.connectionState == ConnectionState.done) {
             return Container(
-              color: Color(
+              color: const Color(
                 0xff070d2d,
               ),
               child: ListView.separated(
@@ -192,10 +187,11 @@ class SearchScreen extends SearchDelegate<String> {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => DetailPageScreen(
                                     movie: snapshot.data![index],
+                                    movieId: snapshot.data![index].id!,
                                   )));
                         },
                         child: Card(
-                          margin: EdgeInsets.only(
+                          margin: const EdgeInsets.only(
                             top: 20,
                           ),
                           color: Colors.transparent,
@@ -204,12 +200,12 @@ class SearchScreen extends SearchDelegate<String> {
                             10,
                           )),
                           elevation: 3,
-                          child: Container(
+                          child: SizedBox(
                             height: 150,
                             child: Row(
                               children: [
                                 Container(
-                                  margin: EdgeInsets.only(
+                                  margin: const EdgeInsets.only(
                                     left: 20,
                                     right: 30,
                                   ),
@@ -227,7 +223,7 @@ class SearchScreen extends SearchDelegate<String> {
                                                     .data![index].posterPath!,
                                           ))),
                                 ),
-                                Container(
+                                SizedBox(
                                   width: 230,
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -240,7 +236,7 @@ class SearchScreen extends SearchDelegate<String> {
                                         weight: FontWeight.w600,
                                         overflow: TextOverflow.ellipsis,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 10,
                                       ),
                                       CustomText(
@@ -258,7 +254,7 @@ class SearchScreen extends SearchDelegate<String> {
                           ),
                         ),
                       ),
-                  separatorBuilder: (context, index) => SizedBox(
+                  separatorBuilder: (context, index) => const SizedBox(
                         height: 5,
                       ),
                   itemCount: snapshot.data!.length),
@@ -275,10 +271,10 @@ class SearchScreen extends SearchDelegate<String> {
           }
         }
         return Container(
-          color: Color(
+          color: const Color(
             0xff070d2d,
           ),
-          child: Center(
+          child: const Center(
             child: CircularProgressIndicator(),
           ),
         );
@@ -289,7 +285,7 @@ class SearchScreen extends SearchDelegate<String> {
   @override
   Widget buildSuggestions(BuildContext context) {
     return Container(
-      color: Color(
+      color: const Color(
         0xff070d2d,
       ),
       child: ListView.builder(

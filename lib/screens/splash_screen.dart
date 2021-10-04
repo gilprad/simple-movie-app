@@ -18,16 +18,19 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(
-        Duration(seconds: 3),
+        const Duration(seconds: 3),
         () => Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => HomeScreen())));
+            context,
+            MaterialPageRoute(
+              builder: (context) => const HomeScreen(),
+            )));
   }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color(
+        backgroundColor: const Color(
           0xff070d2d,
         ),
         body: Center(
@@ -38,7 +41,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 'assets/video-camera.svg',
                 height: 200,
               ),
-              CustomText(
+              const CustomText(
                 content: 'Simple Movie App',
                 size: 28,
                 weight: FontWeight.w600,

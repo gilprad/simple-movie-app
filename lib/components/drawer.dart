@@ -16,7 +16,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
   Widget build(BuildContext context) {
     return Drawer(
       child: Material(
-        color: Color(
+        color: const Color(
           0xff070d2d,
         ),
         child: Column(
@@ -24,20 +24,20 @@ class _CustomDrawerState extends State<CustomDrawer> {
             SizedBox(
               height: displayHeight(context) * 0.04,
             ),
-            CircleAvatar(
+            const CircleAvatar(
               radius: 35,
             ),
             SizedBox(
               height: displayHeight(context) * 0.03,
             ),
-            CustomText(
+            const CustomText(
               content: 'Username',
               size: 20,
             ),
             SizedBox(
               height: displayHeight(context) * 0.02,
             ),
-            CustomText(
+            const CustomText(
               content: 'Email',
               size: 18,
             ),
@@ -47,11 +47,11 @@ class _CustomDrawerState extends State<CustomDrawer> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: ListTile(
-                leading: FaIcon(
+                leading: const FaIcon(
                   FontAwesomeIcons.user,
                   color: Colors.white,
                 ),
-                title: CustomText(
+                title: const CustomText(
                   content: 'Profile',
                   size: 18,
                 ),
@@ -67,11 +67,11 @@ class _CustomDrawerState extends State<CustomDrawer> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: ListTile(
-                leading: FaIcon(
+                leading: const FaIcon(
                   FontAwesomeIcons.signOutAlt,
                   color: Colors.red,
                 ),
-                title: CustomText(
+                title: const CustomText(
                   content: 'Logout',
                   color: Colors.red,
                   size: 18,
