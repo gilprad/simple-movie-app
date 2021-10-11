@@ -86,6 +86,7 @@ class _DetailPageScreenState extends State<DetailPageScreen> {
         future: getDetail(widget.movieId),
         builder: (BuildContext context, AsyncSnapshot<Movie> snapshot) {
           if (snapshot.hasData) {
+            widget.movie = snapshot.data!;
             return SingleChildScrollView(
               child: Container(
                 padding: const EdgeInsets.symmetric(
