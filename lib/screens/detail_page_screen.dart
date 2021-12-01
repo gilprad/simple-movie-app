@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:simple_movie_app/api/services/movie_service.dart';
+import 'package:simple_movie_app/helper/constant.dart';
 import 'package:simple_movie_app/helper/responsive.dart';
 import 'package:simple_movie_app/helper/text.dart';
 import 'package:simple_movie_app/models/movie.dart';
@@ -25,56 +26,52 @@ class _DetailPageScreenState extends State<DetailPageScreen> {
 
   Future<Movie> getDetail(int index) async {
     try {
+      setState(() {
+        isLoaded = true;
+      });
       return service.getDetailMovie(index);
     } on MovieResponseException catch (e) {
-      throw MovieResponseException(
-          message: "Gagal memuat film populer", exception: e);
+      throw MovieResponseException(message: "Gagal memuat film", exception: e);
     }
   }
 
-  String pathImageUrl = 'https://image.tmdb.org/t/p/w500';
   bool isFavorited = false;
+  bool isLoaded = false;
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: const Color(
-        0xff070d2d,
-      ),
+      backgroundColor: primaryColor,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: SizedBox(
         width: displayWidth(context) * 0.4,
         height: displayHeight(context) * 0.07,
-        child: FloatingActionButton(
-          child: CustomText(
-            content: isFavorited ? 'Remove from Favorite' : 'Add to Favorite',
-            weight: FontWeight.w600,
-            size: 16,
-            align: TextAlign.center,
-          ),
-          onPressed: () {
-            // showDialog(
-            //     context: context,
-            //     builder: (context) => CustomDialog(
-            //           movie: widget.movie,
-            //         ));
-            showAlertDialog(context, widget.movie);
-          },
-          backgroundColor: isFavorited
-              ? Colors.red
-              : const Color(
-                  0xff5770e5,
+        child: (isLoaded)
+            ? FloatingActionButton(
+                child: CustomText(
+                  content:
+                      isFavorited ? 'Remove from Favorite' : 'Add to Favorite',
+                  weight: FontWeight.w600,
+                  size: 16,
+                  align: TextAlign.center,
                 ),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
-        ),
+                onPressed: () {
+                  showAlertDialog(context, widget.movie);
+                },
+                backgroundColor: isFavorited
+                    ? Colors.red
+                    : const Color(
+                        0xff5770e5,
+                      ),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18)),
+              )
+            : CircularProgressIndicator(),
       ),
       appBar: AppBar(
-        backgroundColor: const Color(
-          0xff070d2d,
-        ),
+        backgroundColor: primaryColor,
         title: const CustomText(
           content: 'Detail Movie',
           size: 24,
@@ -138,13 +135,17 @@ class _DetailPageScreenState extends State<DetailPageScreen> {
                     const SizedBox(
                       height: 10,
                     ),
-                    const Chip(
-                      label: CustomText(
-                        content: 'Action',
-                      ),
-                      backgroundColor: Color(
-                        0xff161a36,
-                      ),
+                    Wrap(
+                      children: [
+                        Chip(
+                          label: CustomText(
+                            content: snapshot.data!.genres!.toList().toString(),
+                          ),
+                          backgroundColor: const Color(
+                            0xff161a36,
+                          ),
+                        )
+                      ],
                     ),
                     const SizedBox(
                       height: 10,
@@ -244,16 +245,7 @@ class _DetailPageScreenState extends State<DetailPageScreen> {
           setState(() {
             isFavorited = !isFavorited;
           });
-          // if (isFavorited == false) {
-          //   repository.addMovieToFavorite(widget.movie);
-          //   repository
-          //       .addProductionCompanies(widget.movie.productionCompanies!);
-          // }
-          // if (isFavorited == true) {
-          //   repository.deleteFavoritedMovie(snapshot.data!);
-          //   repository
-          //       .deleteProductionCompany(snapshot.data!.productionCompanies!);
-          // }
+          repository.addProductionCompanies(widget.movie.productionCompanies!);
           repository.addMovieToFavorite(widget.movie);
           Navigator.pop(context);
         },
@@ -269,9 +261,7 @@ class _DetailPageScreenState extends State<DetailPageScreen> {
         ));
 
     AlertDialog alert = AlertDialog(
-      backgroundColor: const Color(
-        0xff161a36,
-      ),
+      backgroundColor: primaryColor,
       elevation: 5,
       title: const CustomText(
         content: 'Alert',

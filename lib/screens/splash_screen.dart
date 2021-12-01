@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:simple_movie_app/helper/constant.dart';
 import 'package:simple_movie_app/helper/text.dart';
 import 'package:simple_movie_app/screens/home_screen.dart';
 
@@ -30,9 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: const Color(
-          0xff070d2d,
-        ),
+        backgroundColor: primaryColor,
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

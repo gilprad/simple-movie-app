@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:simple_movie_app/helper/constant.dart';
 import 'package:simple_movie_app/helper/responsive.dart';
 import 'package:simple_movie_app/helper/text.dart';
 
@@ -22,14 +23,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
             size: 24,
           ),
           centerTitle: true,
-          backgroundColor: const Color(
-            0xff070d2d,
-          ),
+          backgroundColor: primaryColor,
         ),
         body: Container(
-          color: const Color(
-            0xff070d2d,
-          ),
+          color: primaryColor,
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             children: [

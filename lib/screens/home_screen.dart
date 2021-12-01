@@ -8,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:simple_movie_app/api/services/movie_service.dart';
 import 'package:simple_movie_app/components/drawer.dart';
+import 'package:simple_movie_app/helper/constant.dart';
 import 'package:simple_movie_app/helper/text.dart';
 import 'package:simple_movie_app/models/movie.dart';
 import 'package:simple_movie_app/repository/tab_repository.dart';
@@ -40,17 +41,11 @@ class _HomeScreenState extends State<HomeScreen> with ChangeNotifier {
     return Consumer<TabRepository>(builder: (context, tabRepository, child) {
       return SafeArea(
         child: Scaffold(
-          backgroundColor: const Color(
-            0xff070d2d,
-          ),
+          backgroundColor: primaryColor,
           bottomNavigationBar: BottomNavigationBar(
             unselectedItemColor: Colors.grey,
-            backgroundColor: const Color(
-              0xff070d2d,
-            ),
-            selectedItemColor: const Color(
-              0xff5770e5,
-            ),
+            backgroundColor: primaryColor,
+            selectedItemColor: tabColor,
             currentIndex: tabRepository.selectedTab,
             onTap: (index) {
               tabRepository.goToTab(index);
@@ -72,9 +67,7 @@ class _HomeScreenState extends State<HomeScreen> with ChangeNotifier {
           ),
           drawer: const CustomDrawer(),
           appBar: AppBar(
-            backgroundColor: const Color(
-              0xff070d2d,
-            ),
+            backgroundColor: primaryColor,
             title: CustomText(
               content: appBarTitle,
               weight: FontWeight.bold,
@@ -174,13 +167,10 @@ class SearchScreen extends SearchDelegate<String> {
     return FutureBuilder(
       future: movieService.searchMovie(query),
       builder: (BuildContext context, AsyncSnapshot<List<Movie>> snapshot) {
-        String pathImageUrl = 'https://image.tmdb.org/t/p/w500';
         if (snapshot.hasData) {
           if (snapshot.connectionState == ConnectionState.done) {
             return Container(
-              color: const Color(
-                0xff070d2d,
-              ),
+              color: primaryColor,
               child: ListView.separated(
                   itemBuilder: (context, index) => InkWell(
                         onTap: () {
@@ -271,9 +261,7 @@ class SearchScreen extends SearchDelegate<String> {
           }
         }
         return Container(
-          color: const Color(
-            0xff070d2d,
-          ),
+          color: primaryColor,
           child: const Center(
             child: CircularProgressIndicator(),
           ),
@@ -285,9 +273,7 @@ class SearchScreen extends SearchDelegate<String> {
   @override
   Widget buildSuggestions(BuildContext context) {
     return Container(
-      color: const Color(
-        0xff070d2d,
-      ),
+      color: primaryColor,
       child: ListView.builder(
         itemCount: searchData!.length > 10 ? 10 : searchData!.length,
         itemBuilder: (context, index) => ListTile(
